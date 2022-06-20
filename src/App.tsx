@@ -1,22 +1,13 @@
 import './App.css';
+import Notifications from 'react-notify-toast';
+import Routing from './components/Routing';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Notifications options={{ zIndex: 9999 }} />
+      <Routing />
+    </>
   );
 }
 
