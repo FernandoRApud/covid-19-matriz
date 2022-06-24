@@ -6,4 +6,9 @@ export const PUBLIC_ROUTES = [
     path: '/',
     component: Home,
   },
+  {
+    id: 'public1',
+    path: '/about',
+    component: Home,
+  },
 ];

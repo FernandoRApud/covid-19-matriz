@@ -1,24 +1,24 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { PUBLIC_ROUTES } from './constants';
-import Home from '../../screens/Home/Home';
+import { covidStore } from "../../interfaces/index";
 
-export default function Routing() {
+export default function Routing({ 
+  CovidResultsStore,
+} : { 
+  CovidResultsStore: covidStore;
+}) {
   return (
-    <BrowserRouter>
-      <Routes>
-        {PUBLIC_ROUTES.map((route) => {
-          return(
-          <Route
-            key={route.id}
-            path={route.path}
-            element={<Home />}
-            // element={Home}
-            // element={route.component}
-          />
-        )
-        })}
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {PUBLIC_ROUTES.map((route) => {
+        return(
+        <Route
+          key={route.id}
+          path={route.path}
+          element={<route.component CovidResultsStore={CovidResultsStore}/>}
+        />
+      )
+      })}
+    </Routes>
   );
 }
