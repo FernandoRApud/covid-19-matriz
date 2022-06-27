@@ -67,7 +67,8 @@ const Home = observer(({
   useEffect(() => {
     setIsLoadingCountries(true)
     selectedContinent(continent)
-    notify.show(`You selected the continent: ${continent.name}, please wait`, 'success');
+    if(continent.value !== "") notify.show(`You selected the continent: ${continent.name}, please wait`, 'success');
+    else notify.show(`You selected all the continents, please wait`, 'success');
   }, [continent])
 
   const selectedCountry = (country: string) => {
