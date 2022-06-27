@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { heatmapCount } from "../../../interfaces/index";
 import ReactTooltip from 'react-tooltip';
+import YearSelector from './YearSelector';
 import Calendar from './Calendar';
 import "../Info.css";
 import "../Home.css";
@@ -9,12 +10,16 @@ const InfoHistory = ({
   country,
   heatmapDeathCount,
   heatmapConfirmedCount,
-  extraClass
+  extraClass,
+  year,
+  setYear
 } : {
   country: string;
   heatmapDeathCount: heatmapCount;
   heatmapConfirmedCount: heatmapCount;
-  extraClass?: string
+  extraClass?: string;
+  year: string;
+  setYear: (year: string) => void;
 }) => {
 
   const [tooltip, showTooltip] = useState(true);
@@ -26,6 +31,9 @@ const InfoHistory = ({
     <div className={`card ${extraClass}`}>
       <h1>{country} - History</h1>
       <div className="margins">
+        <div>
+          <YearSelector year={year} setYear={setYear}/>
+        </div>
         <Calendar label='Deaths' showTooltip={(b) => showTooltip(b)} heatmapCount={heatmapDeathCount} customTooltipDataAttrs={customTooltipDataAttrs}/>
         <Calendar label='Confirmed' showTooltip={(b) => showTooltip(b)} heatmapCount={heatmapConfirmedCount} customTooltipDataAttrs={customTooltipDataAttrs}/>
         {tooltip && <ReactTooltip />}

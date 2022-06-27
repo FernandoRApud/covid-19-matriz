@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { dataStore } from "../../interfaces/index";
 import Error from "../../components/Error";
@@ -24,6 +24,8 @@ const Info = observer(({
   isLoading: boolean,
   setIsLoading: (b: boolean) => void,
 }) => {
+  
+  const [year, setYear] = useState<string>(`${new Date().getFullYear()}`)
 
   useEffect(() => {
     setIsLoading(false)
@@ -67,10 +69,16 @@ const Info = observer(({
       if(specificRequest === "history"){
         if(dataStore.history){
           if(dataStore.history.deaths && dataStore.history.confirmed){
-            let heatmapDeathCount = dateCalculation(dataStore.history.deaths.dates, "2022")
-            let heatmapConfirmedCount = dateCalculation(dataStore.history.confirmed.dates, "2022")
+            let heatmapDeathCount = dateCalculation(dataStore.history.deaths.dates, year)
+            let heatmapConfirmedCount = dateCalculation(dataStore.history.confirmed.dates, year)
             return(
-              <InfoHistory country={country} heatmapDeathCount={heatmapDeathCount} heatmapConfirmedCount={heatmapConfirmedCount}/>
+              <InfoHistory 
+                country={country} 
+                heatmapDeathCount={heatmapDeathCount} 
+                heatmapConfirmedCount={heatmapConfirmedCount} 
+                year={year} 
+                setYear={(year: string) => setYear(year)}
+              />
             )
           }
         }
@@ -87,12 +95,19 @@ const Info = observer(({
         if(dataStore && dataStore.confirmed) cases100 = parseFloat((dataStore.confirmed / 100000).toFixed(2))
         if(dataStore.people_vaccinated && dataStore.population) percentage = parseFloat(((dataStore.people_vaccinated / dataStore.population) * 100).toFixed(2))
         if(dataStore.history && dataStore.history.deaths && dataStore.history.confirmed) {
-          let heatmapDeathCount = dateCalculation(dataStore.history.deaths.dates, "2022")
-          let heatmapConfirmedCount = dateCalculation(dataStore.history.confirmed.dates, "2022")
+          let heatmapDeathCount = dateCalculation(dataStore.history.deaths.dates, year)
+          let heatmapConfirmedCount = dateCalculation(dataStore.history.confirmed.dates, year)
           return(
             <>
               <InfoCases country={country} dataStore={dataStore.cases} cases100={cases100}/>
-              <InfoHistory country={country} heatmapDeathCount={heatmapDeathCount} heatmapConfirmedCount={heatmapConfirmedCount} extraClass={"spaceUp"}/>
+              <InfoHistory 
+                country={country} 
+                heatmapDeathCount={heatmapDeathCount} 
+                heatmapConfirmedCount={heatmapConfirmedCount} 
+                extraClass={"spaceUp"}
+                year={year} 
+                setYear={(year: string) => setYear(year)}
+              />
               <InfoVaccines country={country} dataStore={dataStore.vaccines} percentage={percentage} extraClass={"spaceUp"}/>
             </>
           )
