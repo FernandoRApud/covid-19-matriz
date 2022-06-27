@@ -7,11 +7,13 @@ import "./Selectors.css";
 const CountrySelector = observer(({ 
   CovidResultsStore,
   country,
-  setCountry
+  setCountry,
+  isLoadingCountries
 } : { 
   CovidResultsStore: object;
   country: string;
   setCountry: (c: string) => void;
+  isLoadingCountries: boolean
 } ) => {
 
   const { control } = useForm();
@@ -27,30 +29,29 @@ const CountrySelector = observer(({
             beginSpace: (value) => /^\S/.test(value)
           }
         }}
-        render={() => {
-          // console.log(alo)
-          return(
-          <select onChange={(e) => {
-            // console.log(e)
-            setCountry(e.target.value)
-          }}
-            value={country}
-            className="countrySelector"
-          > 
-          <option hidden value="">Select a country...</option>
-          {
-            Object.entries(CovidResultsStore).map(([countryName, countryData]) => 
-              {
-                return(
-                <option value={countryData.All.abbreviation} key={countryData.All.abbreviation}>
-                  {countryName}
-                </option>
-                )
-              }
-            )
-          }
-          </select>
-        )}}
+        render={() => (
+          <>
+            <label>Country:</label>
+            <select onChange={(e) => setCountry(e.target.value)}
+              value={country}
+              className="countrySelector"
+              disabled={isLoadingCountries}
+            > 
+            <option hidden value="">Select a country...</option>
+            {
+              Object.entries(CovidResultsStore).map(([countryName, countryData]) => 
+                {
+                  return(
+                  <option value={countryData.All.abbreviation} key={countryData.All.abbreviation}>
+                    {countryName}
+                  </option>
+                  )
+                }
+              )
+            }
+            </select>
+          </>
+        )}
       />
     </form>
   );

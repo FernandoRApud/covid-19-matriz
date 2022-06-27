@@ -8,7 +8,7 @@ import "./Selectors.css";
 
 const ContinentSelector = observer(({
   continent,
-  setContinent
+  setContinent,
 } : { 
   continent: continentsData;
   setContinent: (c: continentsData) => void;
@@ -28,25 +28,28 @@ const ContinentSelector = observer(({
           }
         }}
         render={() => (
-          <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-            let a: number = parseInt(e.currentTarget.value)
-            setContinent(CONTINENTS[a])
-          }}
-            value={continent.id}
-            className="continentSelector"
-          >
-          {
-            CONTINENTS.map((continent) => 
-              {
-                return(
-                <option value={continent.id} key={continent.id}>
-                  {continent.name}
-                </option>
-                )
-              }
-            )
-          }
-          </select>
+          <>
+            <label>Continent:</label>
+            <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+              let a: number = parseInt(e.currentTarget.value)
+              setContinent(CONTINENTS[a])
+            }}
+              value={continent.id}
+              className="continentSelector"
+            >
+            {
+              CONTINENTS.map((continent) => 
+                {
+                  return(
+                  <option value={continent.id} key={continent.id}>
+                    {continent.name}
+                  </option>
+                  )
+                }
+              )
+            }
+            </select>
+          </>
         )}
       />
     </form>

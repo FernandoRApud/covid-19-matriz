@@ -32,7 +32,7 @@
   height: 100%;
 }
 
-.iconSkull{
+.icons{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,9 +44,9 @@
   margin-left: 15px;
 }
 
-.third-button{
+/* .third-button{
   margin-top: 15px;
-}
+} */
 
 .right-side{
   justify-content: end;
@@ -55,16 +55,36 @@
   margin-left: 15px;
 }
 
+.bg-yellow{
+  background-image: linear-gradient(-20deg, #656930 0%, #dfc90b 100%);
+}
+
+.bg-yellow:active{
+  background-image: linear-gradient(-20deg, #34361a 0%, #b9a808 100%);
+}
+
 .bg-midnigth{
   background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+}
+
+.bg-midnigth:active{
+  background-image: linear-gradient(-20deg, #162e3d 0%, #2b2541 100%);
 }
 
 .bg-redsun{
   background-image: linear-gradient(-20deg, #ff0844 0%, #ffb199 100%);
 }
 
+.bg-redsun:active{
+  background-image: linear-gradient(-20deg, #c70636 0%, #c78a77 100%);
+}
+
 .bg-greengrass{
   background-image: linear-gradient(-20deg, #0ba360 0%, #3cba92 100%);
+}
+
+.bg-greengrass:active{
+  background-image: linear-gradient(-20deg, #076d41 0%, #2b8568 100%);
 }
 
 div > p {

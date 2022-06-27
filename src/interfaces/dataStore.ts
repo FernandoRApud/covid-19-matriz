@@ -1,8 +1,7 @@
-
 export interface dataStore {
-  population?: string,
-  confirmed?: string,
-  recovered?: string,
+  population?: number,
+  confirmed?: number,
+  recovered?: number,
   deaths?: number,
   country?: string,
   sq_km_area?: number,
@@ -15,5 +14,27 @@ export interface dataStore {
   capital_city?: string,
   lat?: string,
   long?: string,
-  updated?: string
+  updated?: string,
+  dates?: object,
+  administered?: number,
+  people_vaccinated?: number,
+  people_partially_vaccinated?: number,
+  cases?: any, 
+  history?: {
+    deaths?: {
+      dates: object,
+      population?: number,
+      confirmed?: number,
+      recovered?: number,
+      deaths?: number,
+    },
+    confirmed?: {
+      dates: object,
+      population?: number,
+      confirmed?: number,
+      recovered?: number,
+      deaths?: number,
+    },
+  }, 
+  vaccines?: any
 }
