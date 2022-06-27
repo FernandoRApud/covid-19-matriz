@@ -1,0 +1,97 @@
+.flexing{
+  display: flex;
+  justify-content: space-between;
+}
+
+.margins{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.card{
+  padding: 1.5rem;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  border-radius: 0.25rem
+}
+
+.left-side{
+  justify-content: start;
+  width: 50%;
+  margin-right: 15px;
+}
+
+.first-row{
+  width: 100%;
+  display: flex;
+  margin-top: 15px;
+}
+
+.first-button{
+  width: 50%;
+  margin-right: 15px;
+  height: 100%;
+}
+
+.icons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.second-button{
+  width: 50%;
+  margin-left: 15px;
+}
+
+/* .third-button{
+  margin-top: 15px;
+} */
+
+.right-side{
+  justify-content: end;
+  width: 50%;
+  height: 50%;
+  margin-left: 15px;
+}
+
+.bg-yellow{
+  background-image: linear-gradient(-20deg, #656930 0%, #dfc90b 100%);
+}
+
+.bg-yellow:active{
+  background-image: linear-gradient(-20deg, #34361a 0%, #b9a808 100%);
+}
+
+.bg-midnigth{
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+}
+
+.bg-midnigth:active{
+  background-image: linear-gradient(-20deg, #162e3d 0%, #2b2541 100%);
+}
+
+.bg-redsun{
+  background-image: linear-gradient(-20deg, #ff0844 0%, #ffb199 100%);
+}
+
+.bg-redsun:active{
+  background-image: linear-gradient(-20deg, #c70636 0%, #c78a77 100%);
+}
+
+.bg-greengrass{
+  background-image: linear-gradient(-20deg, #0ba360 0%, #3cba92 100%);
+}
+
+.bg-greengrass:active{
+  background-image: linear-gradient(-20deg, #076d41 0%, #2b8568 100%);
+}
+
+div > p {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.info{
+  margin-top: 1rem;
+}

@@ -1,22 +1,20 @@
 import './App.css';
+import Notifications from 'react-notify-toast';
+import Routing from './components/Routing';
+import NavigationBar from './components/NavigationBar';
+import { Provider } from "mobx-react";
+import covidResultsStore from './stores/CovidResultsStore';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider CovidResultsStore={covidResultsStore}>
+      <Notifications options={{ zIndex: 9999 }} />
+      <BrowserRouter>
+        <NavigationBar/>
+        <Routing CovidResultsStore={covidResultsStore}/>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
