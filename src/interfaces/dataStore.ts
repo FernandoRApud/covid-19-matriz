@@ -19,22 +19,36 @@ export interface dataStore {
   administered?: number,
   people_vaccinated?: number,
   people_partially_vaccinated?: number,
-  cases?: any, 
+  cases?: {
+    population: number,
+    confirmed: number,
+    recovered: number,
+    deaths: number,
+  }, 
   history?: {
     deaths?: {
-      dates: object,
+      dates: {
+        [key: string]: number
+      },
       population?: number,
       confirmed?: number,
       recovered?: number,
       deaths?: number,
     },
     confirmed?: {
-      dates: object,
+      dates: {
+        [key: string]: number
+      },
       population?: number,
       confirmed?: number,
       recovered?: number,
       deaths?: number,
     },
   }, 
-  vaccines?: any
+  vaccines?: {
+    population: number,
+    administered: number,
+    people_vaccinated: number,
+    people_partially_vaccinated: number,
+  }
 }

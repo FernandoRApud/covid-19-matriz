@@ -27,7 +27,7 @@ const Calendar = ({
           startDate={new Date(heatmapCount.startDate)}
           endDate={new Date(heatmapCount.finalDate)}
           values={heatmapCount.values}
-          tooltipDataAttrs={(event: any) => customTooltipDataAttrs(event.date, event.count, label.toLowerCase())}
+          tooltipDataAttrs={(tooltip: {date: string, count: number}) => customTooltipDataAttrs(tooltip.date, tooltip.count, label.toLowerCase())}
         />
         <p className="tooltipInfo">*Hover the mouse over the squares to see a tooltip with data</p>
       </div>

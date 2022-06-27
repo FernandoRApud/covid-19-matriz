@@ -31,7 +31,7 @@ const Info = observer(({
     setIsLoading(false)
   }, [dataStore])
 
-  const dateCalculation = (dates: object, year: string) => {
+  const dateCalculation = (dates: { [key: string]: number }, year: string) => {
     let array = Object.entries(dates)
     let filteredArray = array.filter(([a]) => a.split("-")[0] === year)
     let startDate = filteredArray[filteredArray.length - 1][0]
@@ -61,7 +61,6 @@ const Info = observer(({
       if(specificRequest === "cases"){
         let cases100 = 0
         if(dataStore && dataStore.confirmed){
-          cases100 = parseFloat((dataStore.confirmed / 100000).toFixed(2))
           return(<InfoCases country={country} dataStore={dataStore} cases100={cases100}/>)
         } 
         return(<Error />)
@@ -85,21 +84,19 @@ const Info = observer(({
       }
       if(specificRequest === "vaccines"){
         let percentage = 0
-        if(dataStore.people_vaccinated && dataStore.population) 
-        percentage = parseFloat(((dataStore.people_vaccinated / dataStore.population) * 100).toFixed(2))
-        return(<InfoVaccines country={country} dataStore={dataStore} percentage={percentage}/>)
+        if(dataStore.people_vaccinated && dataStore.population) {
+          return(<InfoVaccines country={country} dataStore={dataStore} percentage={percentage}/>)
+        }
       }
       if(specificRequest === "all"){
-        let cases100 = 0
-        let percentage = 0
-        if(dataStore && dataStore.confirmed) cases100 = parseFloat((dataStore.confirmed / 100000).toFixed(2))
-        if(dataStore.people_vaccinated && dataStore.population) percentage = parseFloat(((dataStore.people_vaccinated / dataStore.population) * 100).toFixed(2))
+        var cases100 = 0
+        var percentage = 0
         if(dataStore.history && dataStore.history.deaths && dataStore.history.confirmed) {
           let heatmapDeathCount = dateCalculation(dataStore.history.deaths.dates, year)
           let heatmapConfirmedCount = dateCalculation(dataStore.history.confirmed.dates, year)
           return(
             <>
-              <InfoCases country={country} dataStore={dataStore.cases} cases100={cases100}/>
+              <InfoCases country={country} dataStore={dataStore.cases!} cases100={cases100}/>
               <InfoHistory 
                 country={country} 
                 heatmapDeathCount={heatmapDeathCount} 
@@ -108,7 +105,7 @@ const Info = observer(({
                 year={year} 
                 setYear={(year: string) => setYear(year)}
               />
-              <InfoVaccines country={country} dataStore={dataStore.vaccines} percentage={percentage} extraClass={"spaceUp"}/>
+              <InfoVaccines country={country} dataStore={dataStore.vaccines!} percentage={percentage} extraClass={"spaceUp"}/>
             </>
           )
         }

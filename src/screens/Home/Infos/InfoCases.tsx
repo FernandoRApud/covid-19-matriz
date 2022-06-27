@@ -12,6 +12,9 @@ const InfoCases = ({
   dataStore: dataStore,
   cases100: number
 }) => {
+
+  if(dataStore && dataStore.confirmed) cases100 = parseFloat((dataStore.confirmed / 100000).toFixed(2))
+
   return (
     <div className="card">
       <h1>{country} - Cases</h1>

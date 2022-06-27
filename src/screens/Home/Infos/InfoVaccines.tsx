@@ -14,6 +14,9 @@ const InfoVaccines = ({
   percentage: number;
   extraClass?: string
 }) => {
+
+  if(dataStore.people_vaccinated && dataStore.population) percentage = parseFloat(((dataStore.people_vaccinated / dataStore.population) * 100).toFixed(2))
+  
   return (
     <div className={`card ${extraClass}`}>
       <h1>{country} - Vaccines</h1>

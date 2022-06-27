@@ -1,7 +1,7 @@
 export interface heatmapCount { 
   startDate: string, 
   finalDate: string, 
-  values: any
+  values: (dateValues | undefined)[] 
 }
 
 export interface dateValues {
